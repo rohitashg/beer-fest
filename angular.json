@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "test500": {
+    "beer-fest": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/test500",
+            "outputPath": "dist/beer-fest",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "test500:build"
+            "browserTarget": "beer-fest:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "test500:build:production"
+              "browserTarget": "beer-fest:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "test500:build"
+            "browserTarget": "beer-fest:build"
           }
         },
         "test": {
@@ -95,7 +95,7 @@
         }
       }
     },
-    "test500-e2e": {
+    "beer-fest-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,11 +103,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "test500:serve"
+            "devServerTarget": "beer-fest:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "test500:serve:production"
+              "devServerTarget": "beer-fest:serve:production"
             }
           }
         },
@@ -123,5 +123,5 @@
       }
     }
   },
-  "defaultProject": "test500"
+  "defaultProject": "beer-fest"
 }

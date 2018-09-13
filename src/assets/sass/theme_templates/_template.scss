@@ -1,0 +1,162 @@
+// All varibles Like - background-color,text-color, font-size, margin's, padding's, buttons, & More | start
+//This scss file for varibles, mixing and extend class
+//BG Color
+$primeryBGcolor:#f1f1f1;
+$secondryBGcolor:#ebebeb;
+$bg-black: #000000;
+$bg-white: #ffffff;
+
+//Border colors
+$gainsboro:#dddddd;
+$border-black: #000000;
+$white-smoke:#F3F3F3;
+$border-red:#d11212;
+$border-nobel:#979797;
+
+//text Color
+$txt-black: #000000;
+$txt-white: #ffffff;
+$txt-red:#df2a2a;
+$gray:#878787;
+$link-blue:#0065d8; //fonts size
+
+$font12:12px;
+$font14:14px;
+$font16:16px;
+$font18:18px;
+$font20:20px;
+$font22:22px;
+$font24:24px;
+$font30:30px;
+$font32:32px; //padding
+$pd10:10px;
+$pd15:15px;
+$pd20:20px; //margin
+$mb10:10px;
+$mb20:20px;
+$mb30:30px;
+$mb40:40px;
+$mt10:10px;
+$mt20:20px;
+$mt30:30px;
+$mt40:40px;
+///extand
+%fullwidth {
+	float: left;
+	width: 100%;
+}
+
+%inlineblock {
+	display: inline-block;
+	vertical-align: middle;
+} //New Varibles close
+//all mixin 
+@mixin border_radius($radius) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	border-radius: $radius;
+}
+
+@mixin border-all($color) {
+	border: 2px solid $color;
+} //Default class overwrite or re-code
+%input-control {
+	color: $txt-white;
+	font-size: $font16;
+	@include border-all($txt-white);	
+	background-color:rgba(0, 0, 0, 0.05);
+	@include font-roboto(400);
+	height: 50px;
+	@include border_radius(4px);
+	padding: 6px 20px;
+	&:focus {
+		@include border-all($txt-white);
+		-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(0, 0, 0, .1);
+		box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(0, 0, 0, .1);
+	}
+	.error & {
+		border-color: $border-red;
+		&:focus {
+			@include border-all($txt-white);
+			-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(0, 0, 0, .1);
+			box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(0, 0, 0, .1);
+		}
+	}
+}
+
+.form-control {
+	@extend %input-control;
+}
+
+.form-control::-moz-placeholder {
+  color: #fff;
+  opacity: 1;
+}
+.form-control:-ms-input-placeholder {
+  color: #fff;
+}
+.form-control::-webkit-input-placeholder {
+  color: #fff;
+}
+
+//default button
+%btn {
+	color: $txt-white;
+	text-transform: uppercase;
+	border-color: transparent;
+	background-color: transparent;
+	font-size: $font18;
+	padding: 12px 15px;
+	min-width: 116px;
+	@include font-roboto(700);
+	@include border_radius(1px);
+	line-height: 30px;
+	-webkit-transition: background-color 0.5s ease;
+	-moz-transition: background-color 0.5s ease;
+	-ms-transition: background-color 0.5s ease;
+	transition: background-color 0.5s ease;
+	&:hover {
+		cursor: pointer;
+		background-color: $bg-black;
+		color: $txt-white;
+		opacity: 0.8;
+	}
+}
+
+//default button css
+.btn {
+	@extend %btn;
+	&.btn-cancel {
+		background-color: $secondryBGcolor;
+		border-color: $secondryBGcolor;
+		&:active:hover,
+		&:active:focus {
+			background-color: $secondryBGcolor;
+			border-color: $secondryBGcolor;
+		}
+	}
+}
+
+/* All varibles | end */
+
+.action-btn {
+	@extend %fullwidth;
+}
+
+//Common Error msg property
+.error-msg {
+	display: block;
+	color: $txt-red;
+	text-align: left;
+	font-size: $font14;
+	font-weight: 500;
+	margin-top: $mt10 - 5;
+	&.rong-input {
+		text-align: center;
+		margin-bottom: $mb10;
+		margin-top: 0;
+	}
+}
+
+// All varibles Like - background-color,text-color, font-size, margin's, padding's, buttons, & More | start

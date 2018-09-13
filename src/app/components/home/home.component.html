@@ -1,0 +1,22 @@
+<main class="dashboard">
+	<section class="wrapper-contents">
+		<div class="container">
+
+			<!-- <div class="logo-dashboard">
+					<img src="img/bg-login.png" alt="Logo" width="150px">
+				</div> -->
+
+			<div class="landing-page">
+
+				<div class="grid pointer" *ngFor="let post of posts | async" (click)="viewPost(post.id)">
+					<img src="{{ post.data.backgroud_image }}" alt="Card Image">
+					<div class="content">
+						<h4>{{ post.data.brand_name }}</h4>
+						<p>Good For health</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+</main>

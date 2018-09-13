@@ -1,0 +1,37 @@
+<main class="before-login">
+    <section class="wrapper-/8contents login-bg" [style.backgroundImage]="'url('+ brandlogo +')'">            
+        <div class="login-box">
+            <div class="login-box-content">
+                <figure class="primary-logo">
+                    <img src="{{abc.brand_logo}}" style="width:150px;"> 
+                </figure>
+                <form [formGroup]="form" novalidate>
+                    <div class="form-group" [class.error] ="form.controls.user_name.invalid && form.controls.user_name.touched || form.submited">
+                        <input required formControlName="user_name" type="text" class="form-control" [(ngModel)]="user_name" name="user_name" placeholder="NAME">
+                        <div class="error-msg" *ngIf="form.controls.user_name.invalid && form.controls.user_name.touched || form.submited">
+                            <span>Please enter valid name</span>
+                        </div>                        
+                    </div>
+                    <div class="form-group" [class.error] ="form.controls.phone.invalid && form.controls.phone.touched || form.submited">
+                        <input type="text" required formControlName="phone" class="form-control" [(ngModel)]="phone" name="phone" placeholder="PHONE">
+                        <div class="error-msg" *ngIf="form.controls.phone.invalid && form.controls.phone.touched || form.submited">
+                            <span>Please enter valid phone number.</span>
+                        </div>
+                    </div>                    
+                    <div class="action-btn">
+                        <button [style.backgroundColor]="button_color" type="submit" (click)="onSubmit()" class="btn btn-block">SUBMIT</button>
+                    </div>
+                </form>
+                <figure class="secondary-logo">
+                    <a href="javascript:void(0);" routerLink="/home">Go Back</a>
+                </figure>
+                <!-- <div class="validators">
+                        <div class="error-msg rong-input" *ngIf="form.controls.user_name.valid">
+                            <span>Rong Info msg here</span>
+                        </div>
+                </div> -->
+
+            </div>
+        </div>
+    </section>
+</main>

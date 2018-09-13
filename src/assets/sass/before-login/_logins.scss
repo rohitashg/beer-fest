@@ -1,0 +1,74 @@
+// before Login Pages | start
+.before-login {
+	.login-bg {
+		position: relative; // background-image: url(../img/bg-login.png);
+		width: 100%;
+		min-height: 100%;
+		background-attachment: fixed;
+		background-position: center 0;
+		background-repeat: no-repeat;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-ms-background-size: cover;
+		-o-background-size: cover;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-size: cover;
+		text-align: center;
+		.login-box {
+			height: auto;
+			min-width: auto;
+			min-height: auto;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: transparent;			
+			@media (max-width: 767px){
+				width: 100%;
+				padding: 2em 2em;
+			}
+			@media (min-width: 768px){
+				width: 90%;
+				padding: 4em 4em;
+			}
+			@media (min-width: 980px){
+				width: 50%;
+			}
+			@media (min-width: 1024px){
+				width: 90%;
+			}
+			@media (min-width: 1199px){
+				width: 40%;
+			}
+			.login-box-content {
+				width: 100%;
+			}
+		}
+		.action-btn {
+			margin-top: $mt10;
+			.btn {
+				height: 60px;
+				line-height: 50px;
+				padding: 6px;
+			}
+		}
+	}
+	.form-group {
+		margin-bottom: $mb20 + 10;
+	}
+}
+
+.primary-logo {
+	float: left;
+	width: 100%;
+	margin-bottom: $mb40 * 2 - 20;
+}
+
+.secondary-logo {
+	float: left;
+	width: 100%;
+	margin-top: $mt40 * 2 - 20;
+}
+
+// before Login Pages | end

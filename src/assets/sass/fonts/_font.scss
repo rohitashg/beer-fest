@@ -1,0 +1,19 @@
+// Common Fonts for all Page's | start
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,700i');
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400,700');
+body {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+}
+
+@mixin font-oswald($weight) {
+	font-weight: $weight;
+	font-family: 'Oswald', sans-serif;
+}
+
+@mixin font-roboto($weight) {
+	font-weight: $weight;
+	font-family: 'Roboto', sans-serif;
+}
+
+// Common Fonts for all Page's | end
