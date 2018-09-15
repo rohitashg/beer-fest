@@ -15,13 +15,13 @@ interface BImage {
 }
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-reset-your-password',
+  templateUrl: './reset-your-password.component.html',
+  styleUrls: ['./reset-your-password.component.css']
 })
-export class LoginComponent implements OnInit {
-  email:string = '';
-  password:string = '';
+export class ResetYourPasswordComponent implements OnInit {
+
+  email:string = '';  
   postsCol: AngularFirestoreCollection<BImage>;
   posts: any;
   bgimage:string;
@@ -30,11 +30,9 @@ export class LoginComponent implements OnInit {
   form:FormGroup;
   isValidFormSubmitted = false;
   public loading=false;
-  errorMessage:any;
   constructor(private toastr: ToastrService,private dialogService:DialogService,private formbuilder:FormBuilder,private auth:AuthService,private fire:AngularFireAuth ,private router: Router,private afs: AngularFirestore) { 
     this.form = this.formbuilder.group({
-        email:['',Validators.compose([Validators.required,Validators.email])],
-        password:['',Validators.compose([Validators.required])]
+        email:['',Validators.compose([Validators.required,Validators.email])]
     });
   }
 
@@ -48,36 +46,20 @@ export class LoginComponent implements OnInit {
     });
   }
   onSubmit(){
-    this.loading = true;
-    if (this.form.valid) {
-      this.login = this.auth.emailLogin(this.email, this.password).then((res) =>{
-        this.loading = false;        
-        this.router.navigate(['/users']);
-      });          
-    }else {
-      this.form.controls['email'].markAsTouched();
-      this.form.controls['password'].markAsTouched();
+    if(this.email !=''){      
+      this.isValidFormSubmitted = true;
+      if (this.form.valid) {
+          this.login = this.auth.resetPassword(this.email).then((res) =>{          
+          this.toastr.success('Password reset link has been sent your email id. Please reset your link','Success',{
+            timeOut:3000
+          });
+          this.router.navigate(['/login']);
+        });
+      }
+    }else{
+      this.form.controls['email'].markAsTouched();      
       return;
     }
-    
-  }
-  showConfirm() {
-    let disposable = this.dialogService.addDialog(ConfirmComponent, {
-        title:'Reset Password', 
-        message:"Your msg here."})
-        .subscribe((isConfirmed)=>{
-            //We get dialog result
-            if(isConfirmed) {
-                alert('accepted');
-            }
-            else {
-                alert('declined');
-            }
-        });
-    //We can close dialog calling disposable.unsubscribe();
-    //If dialog was not closed manually close it by timeout
-    setTimeout(()=>{
-        disposable.unsubscribe();
-    },10000);
-  }    
+  }  
+ 
 }

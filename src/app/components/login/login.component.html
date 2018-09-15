@@ -3,32 +3,39 @@
     <div class="login-box">
       <div class="login-box-content">
         <figure class="primary-logo">
-          <img src="{{site_logo}}" style="width:150px;"> 
+          <img src="{{site_logo}}" style="width:150px;">
         </figure>
 
         <form [formGroup]="form" (click)="onSubmit()">
-            <div class="form-group" [class.error] ="form.controls.email.invalid && form.controls.email.touched || form.submited">
-              <input required formControlName="email" type="text" class="form-control" [(ngModel)]="email" name="email" placeholder="Enter Email">
-              <div class="error-msg" *ngIf="form.controls.email.invalid && form.controls.email.touched || form.submited">
-                <span>Please enter valid email</span>
-              </div>
+          <div class="form-group" [class.error]="form.controls.email.invalid && form.controls.email.touched || form.submited">
+            <input required formControlName="email" type="text" class="form-control" [(ngModel)]="email" name="email" placeholder="Enter Email">
+            <div class="error-msg" *ngIf="form.controls.email.invalid && form.controls.email.touched || form.submited">
+              <span>Please enter valid email</span>
             </div>
-            <div class="form-group" [class.error] ="form.controls.password.invalid && form.controls.password.touched || form.submited">
-              <input type="password" required formControlName="password" class="form-control" [(ngModel)]="password" name="password" placeholder="Password">
-              <div class="error-msg" *ngIf="form.controls.password.invalid && form.controls.password.touched || form.submited">
-                <span>Please enter password.</span>
-              </div>
-            </div>        
-            <div class="action-btn">
-              <a href="javascript:void(0);" class="btn btn-block" style="background-color:#273893">LOGIN</a>
+          </div>
+          <div class="form-group" [class.error]="form.controls.password.invalid && form.controls.password.touched || form.submited">
+            <input type="password" required formControlName="password" class="form-control" [(ngModel)]="password" name="password" placeholder="Password">
+            <div class="error-msg" *ngIf="form.controls.password.invalid && form.controls.password.touched || form.submited">
+              <span>Please enter password.</span>
             </div>
+          </div>
+          <div class="action-btn">
+            <a href="javascript:void(0);" class="btn btn-block" style="background-color:#273893">LOGIN</a>
+          </div>
         </form>
 
 
         <figure class="secondary-logo">
           <a href="javascript:void(0);" routerLink="/home">Back To Home</a>
         </figure>
+        <figure class="secondary-logo">            
+          <a href="javascript:void(0);" routerLink="/reset-your-password">Forgot Password</a>
+        </figure>
+        <figure class="secondary-logo">
+            <a href="javascript:void(0);" (click)="showConfirm();">Open Modal popup</a>          
+        </figure>
       </div>
     </div>
   </section>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </main>

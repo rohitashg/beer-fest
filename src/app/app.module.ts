@@ -21,6 +21,19 @@ import { UsersComponent } from './components/users/users.component';
 import { AuthGuard } from './core/services/auth.guard';
 import { AuthService } from './core/services/auth.service';
 import { ProfileComponent } from './components/profile/profile.component';
+import { FirestorequriesComponent } from './components/firestorequries/firestorequries.component';
+import { ScrollableDirective } from './scrollable.directive';
+import { PaginationService } from './core/services/pagination.service';
+// Loader
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { LoadingModule } from 'ngx-loading';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+// boostrap modal
+import { BootstrapModalModule } from 'ng6-bootstrap-modal';
+import { ConfirmComponent } from './components/confirm/confirm.component';
+import { ResetYourPasswordComponent } from './components/reset-your-password/reset-your-password.component';
+ 
 
 
 @NgModule({
@@ -31,7 +44,11 @@ import { ProfileComponent } from './components/profile/profile.component';
     BrandDetailComponent,
     LoginComponent,
     UsersComponent,
-    ProfileComponent
+    ProfileComponent,
+    FirestorequriesComponent,
+    ScrollableDirective,
+    ConfirmComponent,
+    ResetYourPasswordComponent,        
   ],
   imports: [
     HttpModule,
@@ -40,9 +57,18 @@ import { ProfileComponent } from './components/profile/profile.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng4LoadingSpinnerModule.forRoot() ,
+    LoadingModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added    
+    BootstrapModalModule.forRoot({container:document.body}),
   ],
-  providers: [AngularFireAuth,AuthGuard,AuthService],
+  //Don't forget to add the component to entryComponents section
+  entryComponents: [
+    ConfirmComponent
+  ],
+  providers: [AngularFireAuth,AuthGuard,AuthService,PaginationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

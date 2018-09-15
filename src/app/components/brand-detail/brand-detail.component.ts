@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import { RouterLink,Routes, RouterModule,Router,ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { CustomValidators } from '../../core/custom_validator/custom_form_validator';
+import { ToastrService } from 'ngx-toastr';
 
 interface Post {
   backgroud_image: string;
@@ -41,7 +42,9 @@ export class BrandDetailComponent implements OnInit {
   form:FormGroup;
   abc:any;
   isValidFormSubmitted = false;
-  constructor(private formbuilder:FormBuilder,private afs: AngularFirestore,public router:Router,public activeRoute:ActivatedRoute) {
+  public that;
+  public loading = false; //loading
+  constructor(private toastr: ToastrService,private formbuilder:FormBuilder,private afs: AngularFirestore,private router:Router,public activeRoute:ActivatedRoute) {
     this.postId = this.activeRoute.snapshot.paramMap.get('id');
     this.postDoc = this.afs.doc('brand-list/'+this.postId);
     this.abc = this.postDoc.valueChanges().subscribe(res => {      
@@ -60,13 +63,21 @@ export class BrandDetailComponent implements OnInit {
   ngOnInit() {
   }
   onSubmit(){
+    
     if (this.form.valid) {
-      this.afs.collection('users').add({ 'user_name': this.user_name,'phone':this.phone});      
-      this.router.navigate(['/home/']);
+      this.loading = true;
+      this.afs.collection('users')
+        .add({ 'user_name': this.user_name,'phone':this.phone}).then((res) => {          
+            this.loading = false;
+            this.toastr.success('You have registered with us!! we will contact you soon.','Success',{
+              timeOut:3000
+            });
+            this.router.navigate(['home']);            
+        });  
     }else {
       this.form.controls['user_name'].markAsTouched();
       this.form.controls['phone'].markAsTouched();
       return;
-    }    
-  }
+    }
+  } 
 }

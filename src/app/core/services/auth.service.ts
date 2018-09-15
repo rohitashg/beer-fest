@@ -101,8 +101,7 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password)
       .then(credential => {        
         // return this.updateUserData(credential.user);
-        this.updateUserData(credential.user);
-        this.router.navigate(['/users']);
+        this.updateUserData(credential.user);        
       })
       .catch(error => this.handleError(error));
   }
@@ -124,7 +123,7 @@ export class AuthService {
 
   // If error, console log user
   private handleError(error: Error) {
-    console.error(error);    
+    return 0;
   }
 
   // Sets user data to firestore after succesful login

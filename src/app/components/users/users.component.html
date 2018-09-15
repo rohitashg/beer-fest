@@ -1,6 +1,6 @@
 <div class="container">
   <h2>User List</h2>
-  <p>There some lovey people who requested for wine, beer and liquor</p>            
+  <p>There some lovey people who requested for wine, beer and liquor</p>
   <h2>
     <a href="javascript:void(0);" routerLink="/profile">
       Go to profile
@@ -16,18 +16,23 @@
       Users
     </a>
   </h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Phone</th>        
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let post of posts | async">
-        <td>{{ post.data.user_name }}</td>
-        <td>{{ post.data.phone }}</td>        
-      </tr>      
-    </tbody>
-  </table>
+  <div class="scrlldiv" scrollable (scrollPosition)="scrollHandler($event)">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Phone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let boat of page.data | async">
+          <td>{{ boat.user_name }}</td>
+          <td>{{ boat.user_name }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="page.done | async"></p>
+    <ng4-loading-spinner *ngIf="page.loading | async"></ng4-loading-spinner>
+  </div>
+
 </div>
